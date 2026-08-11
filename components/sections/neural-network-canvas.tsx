@@ -6,8 +6,8 @@ type Node = { x: number; y: number; vx: number; vy: number };
 
 const LIGHT_COLOR = "oklch(0.5 0.16 264";
 const DARK_COLOR = "oklch(0.73 0.14 264";
-const LINK_DISTANCE = 150;
-const SPEED = 0.12;
+const LINK_DISTANCE = 170;
+const SPEED = 0.14;
 
 /**
  * A lightweight, hand-rolled canvas particle network: a handful of slowly
@@ -37,7 +37,7 @@ export function NeuralNetworkCanvas({ className }: { className?: string }) {
 
     const seedNodes = () => {
       const area = width * height;
-      const count = Math.max(24, Math.min(70, Math.round(area / 22000)));
+      const count = Math.max(36, Math.min(100, Math.round(area / 14000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -76,7 +76,7 @@ export function NeuralNetworkCanvas({ className }: { className?: string }) {
           const b = nodes[j];
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
           if (dist < LINK_DISTANCE) {
-            const alpha = (1 - dist / LINK_DISTANCE) * 0.35;
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.55;
             ctx.strokeStyle = `${color} / ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -88,9 +88,9 @@ export function NeuralNetworkCanvas({ className }: { className?: string }) {
       }
 
       for (const node of nodes) {
-        ctx.fillStyle = `${color} / 0.55)`;
+        ctx.fillStyle = `${color} / 0.8)`;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 1.6, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 2.2, 0, Math.PI * 2);
         ctx.fill();
       }
     };
