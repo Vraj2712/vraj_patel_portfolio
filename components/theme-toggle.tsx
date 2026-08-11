@@ -20,7 +20,7 @@ export function ThemeToggle() {
       {/* resolvedTheme is undefined on the server; suppress the one-time
           hydration mismatch instead of adding an extra mounted-state effect */}
       <span suppressHydrationWarning>
-        {isDark ? <SunIcon className="size-4" weight="bold" /> : <MoonIcon className="size-4" weight="bold" />}
+        {isDark ? <SunIcon className="size-4" weight="regular" /> : <MoonIcon className="size-4" weight="regular" />}
       </span>
     </Button>
   );

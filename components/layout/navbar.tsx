@@ -60,11 +60,11 @@ export function Navbar() {
           <ThemeToggle />
           <Button
             size="sm"
-            className="hidden gap-1.5 sm:inline-flex"
+            className="hidden gap-1.5 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] sm:inline-flex"
             nativeButton={false}
             render={<a href={portfolio.resumeFile} download />}
           >
-            <DownloadSimpleIcon className="size-4" weight="bold" />
+            <DownloadSimpleIcon className="size-4" weight="regular" />
             Resume
           </Button>
 
@@ -77,7 +77,7 @@ export function Navbar() {
               aria-label="Open menu"
               onClick={() => setOpen(true)}
             >
-              <ListIcon className="size-5" weight="bold" />
+              <ListIcon className="size-5" weight="regular" />
             </Button>
             <SheetContent side="right" className="w-full sm:max-w-xs">
               <SheetHeader>
@@ -101,11 +101,11 @@ export function Navbar() {
               </nav>
               <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
                 <Button
-                  className="gap-1.5"
+                  className="gap-1.5 rounded-full"
                   nativeButton={false}
                   render={<a href={portfolio.resumeFile} download />}
                 >
-                  <DownloadSimpleIcon className="size-4" weight="bold" />
+                  <DownloadSimpleIcon className="size-4" weight="regular" />
                   Download Resume
                 </Button>
               </div>

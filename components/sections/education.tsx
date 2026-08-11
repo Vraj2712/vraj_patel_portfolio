@@ -1,9 +1,11 @@
 import { RevealGroup } from "@/components/reveal";
+import { SectionDivider } from "@/components/section-divider";
 import { portfolio } from "@/data/portfolio";
 
 export function Education() {
   return (
-    <section id="education" className="border-t border-border py-20 sm:py-28">
+    <section id="education" className="relative py-20 sm:py-28">
+      <SectionDivider />
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <h2 className="mb-12 font-display text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
           Education

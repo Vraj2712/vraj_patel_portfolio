@@ -1,5 +1,6 @@
 import { EnvelopeSimpleIcon, PhoneIcon, LinkedinLogoIcon, GithubLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/reveal";
+import { SectionDivider } from "@/components/section-divider";
 import { portfolio } from "@/data/portfolio";
 
 const links = [
@@ -27,7 +28,8 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="border-t border-border py-20 sm:py-28">
+    <section id="contact" className="relative py-20 sm:py-28">
+      <SectionDivider />
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <Reveal className="flex flex-col gap-6">
           <h2 className="max-w-[24ch] text-balance font-display text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl">

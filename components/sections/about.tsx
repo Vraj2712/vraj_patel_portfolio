@@ -1,9 +1,11 @@
 import { Reveal } from "@/components/reveal";
+import { SectionDivider } from "@/components/section-divider";
 import { portfolio } from "@/data/portfolio";
 
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-28">
+    <section id="about" className="relative py-20 sm:py-28">
+      <SectionDivider />
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <Reveal>

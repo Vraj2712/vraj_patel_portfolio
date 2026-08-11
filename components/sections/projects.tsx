@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { RevealGroup } from "@/components/reveal";
+import { SectionDivider } from "@/components/section-divider";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { portfolio } from "@/data/portfolio";
 import type { ProjectItem } from "@/data/portfolio";
@@ -8,15 +10,19 @@ function ProjectCard({ project, featured = false }: { project: ProjectItem; feat
   return (
     <Card
       data-reveal-item
-      className="group h-full border border-border py-6 shadow-none ring-0 transition-all duration-300 hover:-translate-y-1 hover:border-brand/60"
+      className="group h-full border border-border py-6 shadow-none ring-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-brand/50 hover:shadow-[0_28px_60px_-32px_var(--brand-shadow)]"
     >
       <CardHeader className="gap-2 px-6">
         <CardTitle className="text-xl font-medium sm:text-2xl">{project.title}</CardTitle>
         <div className="flex flex-wrap gap-1.5 pt-1">
           {project.tags.map((tag) => (
-            <span key={tag} className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[0.7rem] text-muted-foreground">
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="h-auto rounded-full bg-muted px-2.5 py-0.5 font-mono text-[0.7rem] font-normal text-muted-foreground"
+            >
               {tag}
-            </span>
+            </Badge>
           ))}
         </div>
       </CardHeader>
@@ -42,7 +48,7 @@ function ProjectCard({ project, featured = false }: { project: ProjectItem; feat
                 className="inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
               >
                 {link.label}
-                <ArrowUpRightIcon className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRightIcon className="size-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             ))}
           </div>
@@ -62,7 +68,8 @@ export function Projects() {
   const [featured, ...rest] = portfolio.projects;
 
   return (
-    <section id="projects" className="border-t border-border py-20 sm:py-28">
+    <section id="projects" className="relative py-20 sm:py-28">
+      <SectionDivider />
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <h2 className="mb-12 font-display text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
           Projects
