@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRightIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
-import { AuroraBackground } from "@/components/sections/aurora-background";
+import { HeroBackground } from "@/components/sections/hero-background";
 import { portfolio } from "@/data/portfolio";
 
 gsap.registerPlugin(useGSAP);
@@ -36,10 +36,14 @@ export function Hero() {
   );
 
   return (
-    <section id="top" ref={ref} className="relative overflow-hidden pt-10 pb-24 sm:pt-14 sm:pb-32">
-      <AuroraBackground />
+    <section
+      id="top"
+      ref={ref}
+      className="relative flex min-h-[calc(100dvh-4rem)] w-full items-center overflow-hidden py-16"
+    >
+      <HeroBackground />
 
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16 lg:px-12 xl:px-16">
         <div className="order-2 flex flex-col items-start gap-6 lg:order-1">
           <p data-hero-item className="font-mono text-xs text-muted-foreground">
             {portfolio.location}

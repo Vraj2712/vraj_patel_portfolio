@@ -4,17 +4,17 @@ import { portfolio } from "@/data/portfolio";
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 sm:py-28">
+    <section id="about" className="relative py-24 sm:py-32">
       <SectionDivider />
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.4fr_1fr] lg:gap-20">
           <Reveal>
-            <h2 className="font-display text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+            <h2 className="font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
               About
             </h2>
           </Reveal>
 
-          <Reveal delay={0.08} className="flex max-w-[62ch] flex-col gap-6">
+          <Reveal delay={0.08} className="flex max-w-[68ch] flex-col gap-6">
             {portfolio.about.map((paragraph) => (
               <p key={paragraph} className="text-lg leading-relaxed text-foreground/85">
                 {paragraph}

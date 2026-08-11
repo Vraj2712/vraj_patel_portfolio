@@ -68,10 +68,10 @@ export function Projects() {
   const [featured, ...rest] = portfolio.projects;
 
   return (
-    <section id="projects" className="relative py-20 sm:py-28">
+    <section id="projects" className="relative py-24 sm:py-32">
       <SectionDivider />
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <h2 className="mb-12 font-display text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
+        <h2 className="mb-14 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
           Projects
         </h2>
 

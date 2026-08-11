@@ -8,8 +8,8 @@ import { Separator } from "@/components/ui/separator";
  */
 export function SectionDivider() {
   return (
-    <div className="absolute inset-x-0 top-0 flex justify-center px-5 sm:px-8">
-      <Separator className="h-px w-full max-w-6xl bg-[linear-gradient(to_right,transparent,var(--border)_18%,var(--border)_82%,transparent)]" />
+    <div className="absolute inset-x-0 top-0 flex justify-center px-5 sm:px-8 lg:px-12 xl:px-16">
+      <Separator className="h-px w-full max-w-[1440px] bg-[linear-gradient(to_right,transparent,var(--border)_18%,var(--border)_82%,transparent)]" />
     </div>
   );
 }

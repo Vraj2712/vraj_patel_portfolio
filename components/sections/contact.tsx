@@ -28,11 +28,11 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28">
+    <section id="contact" className="relative py-24 sm:py-32">
       <SectionDivider />
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <Reveal className="flex flex-col gap-6">
-          <h2 className="max-w-[24ch] text-balance font-display text-3xl font-medium leading-tight tracking-tight text-foreground sm:text-5xl">
+          <h2 className="max-w-[26ch] text-balance font-display text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-6xl">
             I&apos;m open to new opportunities in machine learning and applied data science.
           </h2>
           <p className="max-w-[52ch] text-base text-muted-foreground sm:text-lg">

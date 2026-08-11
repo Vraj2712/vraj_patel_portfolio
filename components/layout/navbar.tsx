@@ -33,7 +33,7 @@ export function Navbar() {
           : "border-transparent bg-background/0"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
         <Link
           href="#top"
           className="flex items-center gap-2 rounded-sm text-sm font-medium tracking-tight text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"

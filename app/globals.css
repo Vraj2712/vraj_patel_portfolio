@@ -106,6 +106,9 @@
   }
   html {
     @apply font-sans scroll-smooth;
+    /* A notch bolder than the browser default so type and (rem-based)
+       spacing scale up together, site-wide. */
+    font-size: 106.25%;
   }
   ::selection {
     @apply bg-brand text-brand-foreground;

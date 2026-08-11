@@ -4,16 +4,16 @@ import { portfolio } from "@/data/portfolio";
 
 export function Experience() {
   return (
-    <section id="experience" className="relative py-20 sm:py-28">
+    <section id="experience" className="relative py-24 sm:py-32">
       <SectionDivider />
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <h2 className="mb-12 font-display text-3xl font-medium tracking-tight text-foreground sm:text-4xl">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
+        <h2 className="mb-14 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
           Experience
         </h2>
 
         <RevealGroup className="relative flex flex-col gap-14 border-l border-border pl-8 sm:pl-10" stagger={0.12}>
           {portfolio.experience.map((job) => (
-            <article key={`${job.company}-${job.dates}`} data-reveal-item className="relative">
+            <article key={`${job.company}-${job.dates}`} data-reveal-item className="relative max-w-[70ch]">
               <span
                 aria-hidden
                 className="absolute top-1.5 -left-[calc(2rem+5px)] size-[9px] rounded-full bg-brand ring-4 ring-background sm:-left-[calc(2.5rem+5px)]"
@@ -21,11 +21,11 @@ export function Experience() {
 
               <p className="font-mono text-xs text-muted-foreground">{job.dates}</p>
 
-              <h3 className="mt-1.5 font-display text-xl font-medium text-foreground sm:text-2xl">
+              <h3 className="mt-1.5 font-display text-2xl font-medium text-foreground sm:text-3xl">
                 {job.role}
               </h3>
 
-              <p className="mt-1 text-base text-brand">
+              <p className="mt-1.5 text-base text-brand">
                 {job.company}
                 <span className="text-muted-foreground"> · {job.location}</span>
               </p>
