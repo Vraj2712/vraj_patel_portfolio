@@ -4,10 +4,10 @@ import { portfolio } from "@/data/portfolio";
 
 export function Experience() {
   return (
-    <section id="experience" className="relative py-24 sm:py-32">
+    <section id="experience" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
-        <h2 className="mb-14 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+        <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
           Experience
         </h2>
 
@@ -25,7 +25,7 @@ export function Experience() {
                 {job.role}
               </h3>
 
-              <p className="mt-1.5 text-base text-brand">
+              <p className="mt-1.5 text-lg text-brand">
                 {job.company}
                 <span className="text-muted-foreground"> · {job.location}</span>
               </p>
@@ -36,7 +36,7 @@ export function Experience() {
 
               <ul className="mt-4 flex flex-col gap-2.5">
                 {job.bullets.map((bullet) => (
-                  <li key={bullet} className="flex gap-3 text-[0.95rem] leading-relaxed text-foreground/80">
+                  <li key={bullet} className="flex gap-3 text-base leading-relaxed text-foreground/80">
                     <span aria-hidden className="mt-2.5 h-px w-3 shrink-0 bg-border" />
                     {bullet}
                   </li>

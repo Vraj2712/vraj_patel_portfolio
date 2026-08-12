@@ -13,7 +13,7 @@ function ProjectCard({ project, featured = false }: { project: ProjectItem; feat
       className="group h-full border border-border py-6 shadow-none ring-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-brand/50 hover:shadow-[0_28px_60px_-32px_var(--brand-shadow)]"
     >
       <CardHeader className="gap-2 px-6">
-        <CardTitle className="text-xl font-medium sm:text-2xl">{project.title}</CardTitle>
+        <CardTitle className="text-2xl font-medium sm:text-3xl">{project.title}</CardTitle>
         <div className="flex flex-wrap gap-1.5 pt-1">
           {project.tags.map((tag) => (
             <Badge
@@ -30,7 +30,7 @@ function ProjectCard({ project, featured = false }: { project: ProjectItem; feat
       <CardContent className="flex flex-col gap-4 px-6">
         <ul className={`flex flex-col gap-2 ${featured ? "sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-2" : ""}`}>
           {project.description.map((line) => (
-            <li key={line} className="flex gap-2.5 text-[0.92rem] leading-relaxed text-foreground/80">
+            <li key={line} className="flex gap-2.5 text-base leading-relaxed text-foreground/80">
               <span aria-hidden className="mt-2 h-px w-2.5 shrink-0 bg-border" />
               {line}
             </li>
@@ -68,10 +68,10 @@ export function Projects() {
   const [featured, ...rest] = portfolio.projects;
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
+    <section id="projects" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
-        <h2 className="mb-14 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+        <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
           Projects
         </h2>
 

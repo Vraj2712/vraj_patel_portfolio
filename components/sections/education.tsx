@@ -4,10 +4,10 @@ import { portfolio } from "@/data/portfolio";
 
 export function Education() {
   return (
-    <section id="education" className="relative py-24 sm:py-32">
+    <section id="education" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
-        <h2 className="mb-14 font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+        <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
           Education
         </h2>
 
@@ -19,10 +19,10 @@ export function Education() {
               className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
             >
               <div>
-                <h3 className="font-display text-xl font-medium text-foreground sm:text-2xl">
+                <h3 className="font-display text-2xl font-medium text-foreground sm:text-3xl">
                   {school.school}
                 </h3>
-                <p className="mt-1 text-[0.95rem] text-foreground/80">{school.degree}</p>
+                <p className="mt-1 text-lg text-foreground/80">{school.degree}</p>
                 {school.detail && (
                   <p className="mt-1 font-mono text-xs text-muted-foreground">{school.detail}</p>
                 )}

@@ -28,14 +28,14 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <Reveal className="flex flex-col gap-6">
-          <h2 className="max-w-[26ch] text-balance font-display text-4xl font-medium leading-tight tracking-tight text-foreground sm:text-6xl">
+          <h2 className="max-w-[26ch] text-balance font-display text-5xl font-medium leading-tight tracking-tight text-foreground sm:text-7xl">
             I&apos;m open to new opportunities in machine learning and applied data science.
           </h2>
-          <p className="max-w-[52ch] text-base text-muted-foreground sm:text-lg">
+          <p className="max-w-[52ch] text-lg text-muted-foreground sm:text-xl">
             Reach out through any of the channels below. I usually reply within a day or two.
           </p>
         </Reveal>
@@ -47,7 +47,7 @@ export function Contact() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="group inline-flex items-center gap-2.5 text-base text-foreground/80 transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+              className="group inline-flex items-center gap-2.5 text-lg text-foreground/80 transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
             >
               <Icon className="size-5 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" weight="regular" />
               <span className="border-b border-transparent group-hover:border-brand">{label}</span>

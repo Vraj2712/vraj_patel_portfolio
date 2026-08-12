@@ -43,8 +43,8 @@ export function Hero() {
     >
       <HeroBackground />
 
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16 lg:px-12 xl:px-16">
-        <div className="order-2 flex flex-col items-start gap-6 lg:order-1">
+      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-16 px-5 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:px-12 xl:px-16">
+        <div className="order-2 flex flex-col items-start gap-8 lg:order-1">
           <p data-hero-item className="font-mono text-xs text-muted-foreground">
             {portfolio.location}
           </p>
@@ -56,30 +56,30 @@ export function Hero() {
             {portfolio.name}
           </h1>
 
-          <p data-hero-item className="text-xl font-medium text-brand sm:text-2xl">
+          <p data-hero-item className="text-2xl font-medium text-brand sm:text-3xl">
             {portfolio.role}
           </p>
 
-          <p data-hero-item className="max-w-[46ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p data-hero-item className="max-w-[46ch] text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {portfolio.tagline}
           </p>
 
-          <div data-hero-item className="flex flex-wrap items-center gap-3 pt-2">
+          <div data-hero-item className="flex flex-wrap items-center gap-4 pt-2">
             <Button
               size="lg"
-              className="group gap-0 rounded-full py-1.5 pr-1.5 pl-6 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98]"
+              className="group gap-0 rounded-full py-2 pr-2 pl-7 text-base transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98]"
               nativeButton={false}
               render={<a href="#projects" />}
             >
               View Projects
-              <span className="ml-3 flex size-8 items-center justify-center rounded-full bg-primary-foreground/15 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <span className="ml-3 flex size-9 items-center justify-center rounded-full bg-primary-foreground/15 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 <ArrowRightIcon className="size-4" weight="regular" />
               </span>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="gap-2 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98]"
+              className="gap-2 rounded-full px-6 py-2 text-base transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98]"
               nativeButton={false}
               render={<a href="#contact" />}
             >
@@ -92,7 +92,7 @@ export function Hero() {
         <div className="order-1 flex justify-center lg:order-2 lg:justify-end">
           <div
             data-hero-frame
-            className="relative w-full max-w-[320px] rounded-[2rem] border border-border/70 bg-gradient-to-br from-brand/10 to-transparent p-2.5 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_40px_70px_-30px_rgba(20,20,30,0.35)] sm:max-w-[360px] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_40px_70px_-30px_rgba(0,0,0,0.6)]"
+            className="relative w-full max-w-[380px] rounded-[2rem] border border-border/70 bg-gradient-to-br from-brand/10 to-transparent p-2.5 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_40px_70px_-30px_rgba(20,20,30,0.35)] sm:max-w-[440px] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_40px_70px_-30px_rgba(0,0,0,0.6)]"
           >
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.6rem] bg-muted shadow-[inset_0_1px_2px_rgba(255,255,255,0.5)]">
               <Image
@@ -100,7 +100,7 @@ export function Hero() {
                 alt={`Photo of ${portfolio.name}`}
                 fill
                 priority
-                sizes="(min-width: 1024px) 360px, 70vw"
+                sizes="(min-width: 1024px) 440px, 80vw"
                 className="object-cover"
               />
             </div>

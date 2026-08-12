@@ -108,7 +108,7 @@
     @apply font-sans scroll-smooth;
     /* A notch bolder than the browser default so type and (rem-based)
        spacing scale up together, site-wide. */
-    font-size: 106.25%;
+    font-size: 112.5%;
   }
   ::selection {
     @apply bg-brand text-brand-foreground;
@@ -123,9 +123,10 @@
   }
 }
 
-/* Offsets anchor-scrolled sections so the sticky navbar never covers the heading */
+/* Offsets anchor-scrolled sections by exactly the navbar's height (h-16 =
+   4rem) so a jump lands the section flush below the fixed header. */
 section[id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 4rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
