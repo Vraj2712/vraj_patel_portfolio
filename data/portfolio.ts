@@ -70,12 +70,11 @@ export const portfolio = {
   // ---- Identity ------------------------------------------------------------
   name: "Vraj Shaileshbhai Patel",
   firstName: "Vraj",
-  role: "Machine Learning Engineer",
+  role: "Software & Machine Learning Engineer",
   location: "Jersey City, NJ",
   status:
     "Driven by curiosity and a love for building. Always looking to learn something new and take on the next challenge.",
-  tagline:
-    "Machine learning engineer building reliable, data-driven solutions from raw data to deployment.",
+  tagline: "Building reliable software and data-driven solutions, end to end.",
 
   // ---- Photo -----------------------------------------------------------
   // Lives at /public/photo.jpg — replace that file to change the picture.
@@ -96,8 +95,9 @@ export const portfolio = {
   // ---- About -----------------------------------------------------------
   // Each string in this array becomes one paragraph in the About section.
   about: [
-    "I'm a Computer Science M.S. candidate (May 2026) building and deploying machine learning on large-scale clinical and financial data, across the full lifecycle: SQL feature engineering, gradient boosting and ensemble methods, rigorous leak-free evaluation, and AWS deployment.",
-    "I work primarily in Python and SQL, with a focus on reproducible, version-controlled workflows. I'm comfortable translating technical results for both clinical and non-technical stakeholders.",
+    "I'm a Computer Science M.S. candidate (graduating May 2026) who enjoys building and shipping software across the full lifecycle — from working with data and designing solutions to deploying them in the cloud. I like turning messy problems into clean, reliable systems.",
+    "I work primarily in Python and SQL and care about reproducible, version-controlled workflows and writing code that holds up. I'm comfortable picking up new tools quickly and translating technical work for both technical and non-technical audiences.",
+    "Driven by curiosity and a love for building — always looking to learn something new and take on the next challenge.",
   ],
 
   // ---- Skills ----------------------------------------------------------
@@ -128,6 +128,14 @@ export const portfolio = {
       ],
     },
     {
+      category: "Programming Languages",
+      items: ["JavaScript", "C", "C++", "Java", "Python"],
+    },
+    {
+      category: "Web & Frameworks",
+      items: ["React", "HTML", "CSS", "Tailwind CSS", "FastAPI", "Node.js"],
+    },
+    {
       category: "SQL & Databases",
       items: ["SQL", "PL/SQL", "MySQL", "PostgreSQL", "MongoDB"],
     },
@@ -136,7 +144,7 @@ export const portfolio = {
       items: ["Git", "GitHub", "Docker", "VS Code", "Jupyter", "Linux CLI", "Excel"],
     },
     {
-      category: "Languages",
+      category: "Spoken Languages",
       items: ["English", "Hindi", "Gujarati"],
     },
   ] satisfies SkillGroup[],
