@@ -58,7 +58,7 @@
   --secondary: oklch(0.94 0.006 80);
   --secondary-foreground: oklch(0.2 0.012 262);
   --muted: oklch(0.94 0.006 80);
-  --muted-foreground: oklch(0.4 0.014 262);
+  --muted-foreground: oklch(0.3 0.014 262);
   --accent: oklch(0.94 0.006 80);
   --accent-foreground: oklch(0.2 0.012 262);
   --destructive: oklch(0.55 0.2 27);
@@ -72,8 +72,9 @@
   --brand-foreground: oklch(0.99 0.005 80);
   --brand-shadow: oklch(0.5 0.16 264 / 22%);
 
-  /* One step off background, used to alternate section panels */
-  --surface: oklch(0.965 0.005 80);
+  /* Recessed panel, one clear step darker than --background, used to
+     alternate section tone as you scroll. */
+  --surface: oklch(0.93 0.007 80);
 }
 
 .dark {
@@ -88,7 +89,7 @@
   --secondary: oklch(0.27 0.012 262);
   --secondary-foreground: oklch(0.95 0.006 80);
   --muted: oklch(0.27 0.012 262);
-  --muted-foreground: oklch(0.7 0.012 80);
+  --muted-foreground: oklch(0.74 0.012 80);
   --accent: oklch(0.27 0.012 262);
   --accent-foreground: oklch(0.95 0.006 80);
   --destructive: oklch(0.65 0.2 24);
@@ -100,7 +101,9 @@
   --brand-foreground: oklch(0.16 0.02 262);
   --brand-shadow: oklch(0.73 0.14 264 / 28%);
 
-  --surface: oklch(0.2 0.011 262);
+  /* Recessed, same direction as light mode (darker than --background) so
+     the "alternate panel" reads consistently in both themes. */
+  --surface: oklch(0.145 0.009 262);
 }
 
 @layer base {

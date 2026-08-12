@@ -33,10 +33,12 @@ export function Contact() {
       <SectionDivider />
 
       {/* Soft, static accent wash: a calm echo of the hero's aurora to
-          bookend the page. No motion, no canvas — just a radial gradient. */}
+          bookend the page. No motion, no canvas — just layered gradients,
+          sized and placed so it's actually visible across the section
+          rather than a sliver hiding in one corner. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,var(--brand-shadow),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_75%_60%_at_50%_100%,color-mix(in_oklab,var(--brand)_20%,transparent),transparent_70%),radial-gradient(ellipse_50%_40%_at_15%_15%,color-mix(in_oklab,var(--brand)_10%,transparent),transparent_70%)]"
       />
 
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
