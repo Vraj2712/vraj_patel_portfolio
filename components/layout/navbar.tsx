@@ -2,27 +2,59 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ListIcon, DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr";
+import { DownloadSimpleIcon } from "@phosphor-icons/react/dist/ssr";
+import { User, Sparkles, Briefcase, FolderGit2, GraduationCap, Mail, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetClose,
-} from "@/components/ui/sheet";
+import { NavBar, type NavItem } from "@/components/ui/tubelight-navbar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { portfolio } from "@/data/portfolio";
 
+// Icons for the tubelight nav. Kept local to this component (not in
+// data/portfolio.ts) since that file only carries plain label/href pairs.
+const NAV_ICONS: Record<string, typeof User> = {
+  "#about": User,
+  "#skills": Sparkles,
+  "#experience": Briefcase,
+  "#projects": FolderGit2,
+  "#education": GraduationCap,
+  "#contact": Mail,
+};
+
+const navItems: NavItem[] = portfolio.nav.map((item) => ({
+  name: item.label,
+  url: item.href,
+  icon: NAV_ICONS[item.href] ?? Circle,
+}));
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [activeUrl, setActiveUrl] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: whichever section is crossing the vertical center of the
+  // viewport becomes the active tab. Sections are full-screen, so this
+  // "centered band" technique reliably tracks the one the visitor is on.
+  useEffect(() => {
+    const sections = portfolio.nav
+      .map((item) => document.getElementById(item.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActiveUrl(`#${visible.target.id}`);
+      },
+      { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -33,7 +65,7 @@ export function Navbar() {
           : "border-transparent bg-background/0"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-[auto_1fr_auto] items-center gap-2 px-5 sm:px-8 lg:px-12 xl:px-16">
         <Link
           href="#top"
           className="flex items-center gap-2 rounded-sm text-sm font-medium tracking-tight text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
@@ -44,73 +76,27 @@ export function Navbar() {
           <span className="hidden font-display text-base sm:inline">{portfolio.firstName} Patel</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {portfolio.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-foreground/70 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Middle grid track always gets exactly the space left over between
+            the logo and actions, so the nav can never overlap either one.
+            justify-start below md: if the pill ever needs to scroll on a
+            very narrow phone, centering + overflow would hide the start of
+            the content behind a default centered scroll position. */}
+        <div className="flex justify-start overflow-x-auto md:justify-center">
+          <NavBar items={navItems} activeUrl={activeUrl} onItemSelect={setActiveUrl} />
+        </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center justify-end gap-1.5">
           <ThemeToggle />
           <Button
             size="sm"
-            className="hidden gap-1.5 rounded-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] sm:inline-flex"
+            className="gap-0 rounded-full px-2.5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] sm:gap-1.5 sm:px-4"
             nativeButton={false}
             render={<a href={portfolio.resumeFile} download />}
           >
             <DownloadSimpleIcon className="size-4" weight="regular" />
-            Resume
+            <span className="hidden sm:inline">Resume</span>
+            <span className="sr-only sm:hidden">Download resume</span>
           </Button>
-
-          <Sheet open={open} onOpenChange={setOpen}>
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon-sm"
-              className="lg:hidden"
-              aria-label="Open menu"
-              onClick={() => setOpen(true)}
-            >
-              <ListIcon className="size-5" weight="regular" />
-            </Button>
-            <SheetContent side="right" className="w-full sm:max-w-xs">
-              <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-1 px-4" aria-label="Mobile">
-                {portfolio.nav.map((item) => (
-                  <SheetClose
-                    key={item.href}
-                    nativeButton={false}
-                    render={
-                      <Link
-                        href={item.href}
-                        className="rounded-md px-2 py-2.5 text-base text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
-                      />
-                    }
-                  >
-                    {item.label}
-                  </SheetClose>
-                ))}
-              </nav>
-              <div className="mt-auto flex flex-col gap-2 border-t border-border p-4">
-                <Button
-                  className="gap-1.5 rounded-full"
-                  nativeButton={false}
-                  render={<a href={portfolio.resumeFile} download />}
-                >
-                  <DownloadSimpleIcon className="size-4" weight="regular" />
-                  Download Resume
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
         </div>
       </div>
     </header>
