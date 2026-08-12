@@ -97,7 +97,6 @@ export const portfolio = {
   about: [
     "I'm a Computer Science M.S. candidate (graduating May 2026) who enjoys building and shipping software across the full lifecycle — from working with data and designing solutions to deploying them in the cloud. I like turning messy problems into clean, reliable systems.",
     "I work primarily in Python and SQL and care about reproducible, version-controlled workflows and writing code that holds up. I'm comfortable picking up new tools quickly and translating technical work for both technical and non-technical audiences.",
-    "Driven by curiosity and a love for building — always looking to learn something new and take on the next challenge.",
   ],
 
   // ---- Skills ----------------------------------------------------------
