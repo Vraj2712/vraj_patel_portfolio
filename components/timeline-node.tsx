@@ -21,6 +21,13 @@ export function TimelineNode({ className }: { className?: string }) {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         if (!ref.current) return;
+
+        // Already past the reveal point at mount (e.g. loading directly on
+        // a #hash URL) — leave it at its default filled state rather than
+        // animating from 0, since there's no further scroll event to make
+        // ScrollTrigger re-check and bring it back up.
+        if (ref.current.getBoundingClientRect().top < window.innerHeight * 0.85) return;
+
         gsap.fromTo(
           ref.current,
           { "--fill": 0 } as gsap.TweenVars,
