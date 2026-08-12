@@ -161,6 +161,32 @@
     background-clip: padding-box, border-box;
     border: 1px solid transparent;
   }
+
+  /* Small dot drifting down the Experience section's ambient "data flow"
+     line. transform-only (translateY in dvh, not top) so it stays cheap
+     even though it runs continuously. Frozen at its 0%% (invisible) frame
+     under reduced motion via the global rule below -- the static line it
+     travels along stays visible either way. */
+  .data-flow-dot {
+    animation: data-flow 6s linear infinite;
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100dvh);
+    opacity: 0;
+  }
 }
 
 /* Offsets anchor-scrolled sections by exactly the navbar's height (h-16 =

@@ -2,15 +2,17 @@ import { RevealGroup } from "@/components/reveal";
 import { SectionDivider } from "@/components/section-divider";
 import { SectionTag } from "@/components/section-tag";
 import { TimelineNode } from "@/components/timeline-node";
+import { ExperienceBackground } from "@/components/experience-background";
 import { portfolio } from "@/data/portfolio";
 
 export function Experience() {
   return (
     <section
       id="experience"
-      className="relative flex min-h-[100dvh] flex-col justify-center bg-surface py-24 sm:py-32"
+      className="relative isolate flex min-h-[100dvh] flex-col justify-center bg-surface py-24 sm:py-32"
     >
       <SectionDivider />
+      <ExperienceBackground />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <SectionTag label="experience" />
         <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">

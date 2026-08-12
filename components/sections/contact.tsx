@@ -29,7 +29,7 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden py-24 sm:py-32">
+    <section id="contact" className="relative isolate flex min-h-[100dvh] flex-col justify-center overflow-hidden py-24 sm:py-32">
       <SectionDivider />
 
       {/* Soft, static accent wash: a calm echo of the hero's aurora to

@@ -39,7 +39,7 @@ export function Hero() {
     <section
       id="top"
       ref={ref}
-      className="relative flex min-h-[calc(100dvh-4rem)] w-full items-center overflow-hidden py-16"
+      className="relative isolate flex min-h-[calc(100dvh-4rem)] w-full items-center overflow-hidden py-16"
     >
       <HeroBackground />
 

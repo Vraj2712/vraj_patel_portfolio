@@ -8,8 +8,16 @@ export function Projects() {
   const [featured, ...rest] = portfolio.projects;
 
   return (
-    <section id="projects" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
+    <section id="projects" className="relative isolate flex min-h-[100dvh] flex-col justify-center overflow-hidden py-24 sm:py-32">
       <SectionDivider />
+
+      {/* Soft accent spotlight behind the card grid — static, no motion,
+          just enough presence to make the cards read as popping forward. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_55%_at_50%_38%,color-mix(in_oklab,var(--brand)_16%,transparent),transparent_70%)] opacity-80 dark:opacity-100"
+      />
+
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <SectionTag label="projects" />
         <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">

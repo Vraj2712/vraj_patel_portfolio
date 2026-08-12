@@ -18,7 +18,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 
 export function Skills() {
   return (
-    <section id="skills" className="texture-grid relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
+    <section id="skills" className="texture-grid relative isolate flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <SectionTag label="skills" />
