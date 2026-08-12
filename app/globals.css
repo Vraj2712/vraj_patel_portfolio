@@ -45,6 +45,14 @@
   --radius-md: calc(var(--radius) * 0.75);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
+
+  /* Fluid section-heading sizes: same floor as the old mobile size
+     (text-5xl, 3rem) so small screens are unchanged, but the ceiling is
+     reached by ~1080px viewport width and capped there -- a notch below
+     the old fixed sm: breakpoint sizes -- instead of jumping straight to
+     a fixed size at 640px and staying there through 4K monitors. */
+  --text-heading: clamp(3rem, 2.35rem + 2vw, 3.5rem);
+  --text-heading-lg: clamp(3rem, 2.2rem + 3vw, 4rem);
 }
 
 :root {

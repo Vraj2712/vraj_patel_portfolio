@@ -14,7 +14,7 @@ export function About() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.4fr_1fr] lg:gap-20">
           <Reveal>
             <SectionTag label="about" />
-            <h2 className="font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
+            <h2 className="font-display text-heading font-medium tracking-tight text-foreground">
               About
             </h2>
           </Reveal>

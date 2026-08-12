@@ -41,18 +41,18 @@ export function Contact() {
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_75%_60%_at_50%_100%,color-mix(in_oklab,var(--brand)_20%,transparent),transparent_70%),radial-gradient(ellipse_50%_40%_at_15%_15%,color-mix(in_oklab,var(--brand)_10%,transparent),transparent_70%)]"
       />
 
-      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
-        <Reveal className="flex flex-col gap-6">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-5 text-center sm:px-8 lg:px-12 xl:px-16">
+        <Reveal className="flex flex-col items-center gap-6">
           <SectionTag label="contact" />
-          <h2 className="max-w-[26ch] text-balance font-display text-5xl font-medium leading-tight tracking-tight text-foreground sm:text-7xl">
+          <h2 className="mx-auto max-w-[22ch] text-balance font-display text-heading-lg font-medium leading-tight tracking-tight text-foreground">
             Open to opportunities where I can build meaningful things and learn along the way.
           </h2>
-          <p className="max-w-[52ch] text-lg text-muted-foreground sm:text-xl">
+          <p className="mx-auto max-w-[52ch] text-lg text-muted-foreground sm:text-xl">
             Reach out through any of the channels below. I usually reply within a day or two.
           </p>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center gap-2">
+        <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center justify-center gap-2">
           {links.map(({ label, href, icon: Icon }) => (
             <a
               key={label}
