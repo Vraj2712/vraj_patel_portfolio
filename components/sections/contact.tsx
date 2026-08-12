@@ -29,7 +29,7 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative isolate flex min-h-[100dvh] flex-col justify-center overflow-hidden py-24 sm:py-32">
+    <section id="contact" className="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-32">
       <SectionDivider />
 
       {/* Soft, static accent wash: a calm echo of the hero's aurora to
@@ -45,7 +45,7 @@ export function Contact() {
         <Reveal className="flex flex-col gap-6">
           <SectionTag label="contact" />
           <h2 className="max-w-[26ch] text-balance font-display text-5xl font-medium leading-tight tracking-tight text-foreground sm:text-7xl">
-            I&apos;m open to new opportunities in machine learning and applied data science.
+            Open to opportunities where I can build meaningful things and learn along the way.
           </h2>
           <p className="max-w-[52ch] text-lg text-muted-foreground sm:text-xl">
             Reach out through any of the channels below. I usually reply within a day or two.

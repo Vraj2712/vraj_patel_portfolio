@@ -8,7 +8,7 @@ export function Education() {
   return (
     <section
       id="education"
-      className="relative isolate flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-surface py-24 sm:py-32"
+      className="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start overflow-hidden bg-surface pt-20 pb-24 sm:pt-24 sm:pb-32"
     >
       <SectionDivider />
       <EducationBackground />

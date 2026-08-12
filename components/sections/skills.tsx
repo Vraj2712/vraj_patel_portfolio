@@ -1,4 +1,4 @@
-import { BrainCircuit, ChartBar, Activity, Database, TerminalSquare, Languages as LanguagesIcon, type LucideIcon } from "lucide-react";
+import { BrainCircuit, ChartBar, Activity, Code2, Globe, Database, TerminalSquare, Languages as LanguagesIcon, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { RevealGroup } from "@/components/reveal";
 import { SectionDivider } from "@/components/section-divider";
@@ -11,14 +11,16 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "Machine Learning": BrainCircuit,
   "Data Analysis": ChartBar,
   "Healthcare Data": Activity,
+  "Programming Languages": Code2,
+  "Web & Frameworks": Globe,
   "SQL & Databases": Database,
   Tools: TerminalSquare,
-  Languages: LanguagesIcon,
+  "Spoken Languages": LanguagesIcon,
 };
 
 export function Skills() {
   return (
-    <section id="skills" className="texture-grid relative isolate flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
+    <section id="skills" className="texture-grid relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start pt-20 pb-24 sm:pt-24 sm:pb-32">
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
         <SectionTag label="skills" />

@@ -7,7 +7,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="texture-dots relative isolate flex min-h-[100dvh] flex-col justify-center bg-surface py-24 sm:py-32"
+      className="texture-dots relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start bg-surface pt-20 pb-24 sm:pt-24 sm:pb-32"
     >
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">

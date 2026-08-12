@@ -8,7 +8,7 @@ export function Projects() {
   const [featured, ...rest] = portfolio.projects;
 
   return (
-    <section id="projects" className="relative isolate flex min-h-[100dvh] flex-col justify-center overflow-hidden py-24 sm:py-32">
+    <section id="projects" className="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-32">
       <SectionDivider />
 
       {/* Soft accent spotlight behind the card grid — static, no motion,
