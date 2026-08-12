@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 type Node = { x: number; y: number; vx: number; vy: number };
 
-const LIGHT_COLOR = "oklch(0.5 0.16 264";
+const LIGHT_COLOR = "oklch(0.56 0.16 45";
 const DARK_COLOR = "oklch(0.73 0.14 264";
 const LINK_DISTANCE = 170;
 const SPEED = 0.14;

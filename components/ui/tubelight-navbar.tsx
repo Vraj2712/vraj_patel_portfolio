@@ -65,10 +65,10 @@ export function NavBar({ items, activeUrl, onItemSelect, className }: NavBarProp
                 initial={false}
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               >
-                <div className="absolute -top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-primary">
-                  <div className="absolute -top-2 -left-2 h-6 w-14 rounded-full bg-primary/40 blur-md" />
-                  <div className="absolute -top-1 left-1 h-6 w-8 rounded-full bg-primary/40 blur-md" />
-                  <div className="absolute top-0 left-3 h-4 w-4 rounded-full bg-primary/40 blur-sm" />
+                <div className="absolute -top-2 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-brand">
+                  <div className="absolute -top-2 -left-2 h-6 w-14 rounded-full bg-brand/40 blur-md" />
+                  <div className="absolute -top-1 left-1 h-6 w-8 rounded-full bg-brand/40 blur-md" />
+                  <div className="absolute top-0 left-3 h-4 w-4 rounded-full bg-brand/40 blur-sm" />
                 </div>
               </motion.div>
             )}

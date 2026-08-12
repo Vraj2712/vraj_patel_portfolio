@@ -6,8 +6,9 @@
 
 /*
  * Design tokens.
- * Palette: warm paper / ink, one signature accent (deep cobalt blue), used
- * identically for every interactive/brand moment across the whole site.
+ * Palette: warm paper / ink, one signature accent -- burnt orange in light
+ * mode, cobalt blue in dark mode (see --brand below) -- used identically
+ * for every interactive/brand moment across the whole site.
  * Type: Newsreader (editorial display serif) + Geist (sans, UI/body) +
  * JetBrains Mono (reserved for real data: dates, metrics, tags).
  */
@@ -64,13 +65,17 @@
   --destructive: oklch(0.55 0.2 27);
   --border: oklch(0.885 0.008 80);
   --input: oklch(0.885 0.008 80);
-  --ring: oklch(0.5 0.16 264);
+  --ring: oklch(0.56 0.16 45);
   --radius: 0.5rem;
 
-  /* Signature accent: deep cobalt blue, used the same way everywhere */
-  --brand: oklch(0.5 0.16 264);
+  /* Signature accent: refined burnt orange (#bd4d00), used the same way
+     everywhere. Chosen for light mode only -- the cobalt blue disappeared
+     against the white background, so light mode gets its own hue while
+     dark mode keeps the original blue below. Contrast-checked: 4.69:1
+     against --background, 4.82:1 for --brand-foreground on top of it. */
+  --brand: oklch(0.56 0.16 45);
   --brand-foreground: oklch(0.99 0.005 80);
-  --brand-shadow: oklch(0.5 0.16 264 / 22%);
+  --brand-shadow: oklch(0.56 0.16 45 / 22%);
 
   /* Recessed panel, one clear step darker than --background, used to
      alternate section tone as you scroll. */
