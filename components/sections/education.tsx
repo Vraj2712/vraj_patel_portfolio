@@ -1,22 +1,27 @@
 import { RevealGroup } from "@/components/reveal";
 import { SectionDivider } from "@/components/section-divider";
+import { SectionTag } from "@/components/section-tag";
 import { portfolio } from "@/data/portfolio";
 
 export function Education() {
   return (
-    <section id="education" className="relative flex min-h-[100dvh] flex-col justify-center py-24 sm:py-32">
+    <section
+      id="education"
+      className="relative flex min-h-[100dvh] flex-col justify-center bg-surface py-24 sm:py-32"
+    >
       <SectionDivider />
       <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 xl:px-16">
+        <SectionTag label="education" />
         <h2 className="mb-14 font-display text-5xl font-medium tracking-tight text-foreground sm:text-6xl">
           Education
         </h2>
 
-        <RevealGroup className="flex flex-col divide-y divide-border border-t border-border">
+        <RevealGroup className="flex flex-col gap-4">
           {portfolio.education.map((school) => (
             <div
               key={school.school}
               data-reveal-item
-              className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              className="flex flex-col gap-2 rounded-xl border border-border bg-card px-6 py-6 transition-colors duration-300 hover:border-brand/40 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
             >
               <div>
                 <h3 className="font-display text-2xl font-medium text-foreground sm:text-3xl">

@@ -33,6 +33,7 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-shadow: var(--brand-shadow);
+  --color-surface: var(--surface);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -70,6 +71,9 @@
   --brand: oklch(0.5 0.16 264);
   --brand-foreground: oklch(0.99 0.005 80);
   --brand-shadow: oklch(0.5 0.16 264 / 22%);
+
+  /* One step off background, used to alternate section panels */
+  --surface: oklch(0.965 0.005 80);
 }
 
 .dark {
@@ -95,6 +99,8 @@
   --brand: oklch(0.73 0.14 264);
   --brand-foreground: oklch(0.16 0.02 262);
   --brand-shadow: oklch(0.73 0.14 264 / 28%);
+
+  --surface: oklch(0.2 0.011 262);
 }
 
 @layer base {
@@ -120,6 +126,37 @@
   .italic-safe {
     line-height: 1.15;
     padding-bottom: 0.15em;
+  }
+
+  /* Faint, theme-derived background textures. Both are built from
+     color-mix() against --foreground, so they auto-invert correctly in
+     dark mode with no extra rules and stay extremely subtle by design. */
+  .texture-dots {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in oklab, var(--foreground) 14%, transparent) 1px,
+      transparent 0
+    );
+    background-size: 28px 28px;
+  }
+
+  .texture-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* 1px gradient border via double background-clip. Put this on the card
+     itself: bg-card supplies the inner fill, the gradient shows through
+     the 1px padding as a border. */
+  .gradient-border {
+    background-image:
+      linear-gradient(var(--card), var(--card)),
+      linear-gradient(135deg, var(--brand) 0%, color-mix(in oklab, var(--brand) 30%, transparent) 35%, transparent 60%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border: 1px solid transparent;
   }
 }
 
