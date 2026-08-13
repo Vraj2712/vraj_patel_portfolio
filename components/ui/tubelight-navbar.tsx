@@ -33,7 +33,7 @@ export interface NavBarProps {
  */
 export function NavBar({ items, activeUrl, onItemSelect, className }: NavBarProps) {
   return (
-    <div className={cn("flex items-center gap-px rounded-full border border-border/70 bg-background/60 p-1 shadow-sm backdrop-blur-md sm:gap-1", className)}>
+    <div className={cn("flex items-center gap-px rounded-full border border-border/70 bg-muted p-1 shadow-sm sm:gap-1", className)}>
       {items.map((item) => {
         const Icon = item.icon
         const isActive = activeUrl === item.url
@@ -47,7 +47,7 @@ export function NavBar({ items, activeUrl, onItemSelect, className }: NavBarProp
             className={cn(
               "relative flex cursor-pointer items-center justify-center rounded-full px-1.5 py-2 text-sm font-medium transition-colors duration-200",
               "text-muted-foreground hover:text-foreground",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+              "outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
               isActive && "text-foreground",
               "sm:px-3 md:px-4"
             )}

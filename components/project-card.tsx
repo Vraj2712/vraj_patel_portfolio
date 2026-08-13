@@ -78,19 +78,13 @@ export function ProjectCard({ project, featured = false }: { project: ProjectIte
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                className="inline-flex items-center gap-1 rounded-sm text-sm font-medium text-brand underline-offset-4 outline-none transition-colors hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
               >
                 {link.label}
                 <ArrowUpRightIcon className="size-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             ))}
           </div>
-        )}
-
-        {!project.links && (
-          <p className="pt-1 font-mono text-xs text-muted-foreground">
-            TODO: add a public repo or live link
-          </p>
         )}
       </CardContent>
     </Card>

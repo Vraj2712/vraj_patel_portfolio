@@ -23,7 +23,7 @@ export function Footer() {
             e.preventDefault();
             document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
-          className="rounded-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          className="rounded-sm outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           Back to top
         </Link>

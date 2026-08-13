@@ -131,7 +131,7 @@ export function Navbar() {
             setActiveUrl("");
             document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
-          className="group flex items-center gap-2.5 rounded-full text-sm font-medium tracking-tight text-foreground transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03] active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          className="group flex items-center gap-2.5 rounded-full text-sm font-medium tracking-tight text-foreground transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           <span
             aria-hidden="true"

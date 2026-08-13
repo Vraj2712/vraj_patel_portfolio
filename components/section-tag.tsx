@@ -5,7 +5,7 @@
  */
 export function SectionTag({ label }: { label: string }) {
   return (
-    <p aria-hidden className="mb-3 font-mono text-xs tracking-wide text-muted-foreground/70">
+    <p aria-hidden className="mb-3 font-mono text-xs tracking-wide text-muted-foreground/90">
       {`// ${label}`}
     </p>
   );

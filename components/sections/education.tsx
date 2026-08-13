@@ -8,7 +8,7 @@ export function Education() {
   return (
     <section
       id="education"
-      className="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start overflow-hidden bg-surface pt-20 pb-24 sm:pt-24 sm:pb-32"
+      className="relative isolate flex flex-col justify-start overflow-hidden bg-surface pt-20 pb-24 sm:pt-24 sm:pb-32"
     >
       <SectionDivider />
       <EducationBackground />
@@ -23,10 +23,10 @@ export function Education() {
             <div
               key={school.school}
               data-reveal-item
-              className="flex flex-col gap-2 rounded-xl border border-border bg-card px-6 py-6 transition-colors duration-300 hover:border-brand/40 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              className="flex flex-col gap-2 rounded-xl border border-border bg-card px-6 py-6 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_16px_40px_-24px_var(--brand-shadow)] sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
             >
               <div>
-                <h3 className="font-display text-2xl font-medium text-foreground sm:text-3xl">
+                <h3 className="font-display text-heading-sm font-medium text-foreground">
                   {school.school}
                 </h3>
                 <p className="mt-1 text-lg text-foreground/80">{school.degree}</p>

@@ -29,7 +29,7 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative isolate flex min-h-[calc(100dvh-4rem)] flex-col justify-start overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-32">
+    <section id="contact" className="relative isolate flex flex-col justify-start overflow-hidden pt-20 pb-24 sm:pt-24 sm:pb-32">
       <SectionDivider />
 
       {/* Soft, static accent wash: a calm echo of the hero's aurora to
@@ -59,7 +59,7 @@ export function Contact() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="group inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-base text-foreground/80 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+              className="group inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-base text-foreground/80 outline-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               <Icon className="size-5 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" weight="regular" />
               {label}
