@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono, Newsreader } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ChatWidget } from "@/components/ChatWidget";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
+          <ChatWidget />
         </ThemeProvider>
       </body>
     </html>

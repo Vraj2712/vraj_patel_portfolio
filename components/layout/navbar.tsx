@@ -160,7 +160,7 @@ export function Navbar() {
             size="sm"
             className="gap-0 rounded-full px-2.5 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.97] sm:gap-1.5 sm:px-4"
             nativeButton={false}
-            render={<a href={portfolio.resumeFile} download />}
+            render={<a href={portfolio.resumeFile} download data-tour="resume" />}
           >
             <DownloadSimpleIcon className="size-4" weight="regular" />
             <span className="hidden sm:inline">Resume</span>
