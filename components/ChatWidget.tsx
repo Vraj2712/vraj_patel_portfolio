@@ -139,6 +139,11 @@ export function ChatWidget() {
 
       if (typeof data.highlight === "string" && SPOTLIGHT_TARGETS.includes(data.highlight)) {
         setSpotlightTarget(data.highlight as SpotlightTarget);
+        // The mobile panel is a full-screen sheet that would otherwise hide
+        // the spotlight entirely. Desktop's floating panel stays open.
+        if (isMobile) {
+          setIsOpen(false);
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");

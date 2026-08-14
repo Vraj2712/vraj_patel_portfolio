@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { portfolio } from "@/data/portfolio";
 
 export const SPOTLIGHT_TARGETS = [
   "resume",
@@ -48,51 +49,105 @@ export function Spotlight({
       return;
     }
 
-    const el =
-      document.querySelector<HTMLElement>(`[data-tour="${target}"]`) ??
-      document.getElementById(target);
-
-    if (!el) {
-      onDismissRef.current();
-      return;
-    }
-
+    let cancelled = false;
+    const cleanupFns: Array<() => void> = [];
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
 
-    const updateRect = () => {
+    const findTarget = (): HTMLElement | null =>
+      document.querySelector<HTMLElement>(`[data-tour="${target}"]`) ?? document.getElementById(target);
+
+    // display:none / collapsed-container elements measure zero, which is
+    // enough to tell "not actually shown right now" apart from a normal
+    // element that's merely off-screen (which still has real dimensions).
+    const isVisible = (el: HTMLElement): boolean => {
       const r = el.getBoundingClientRect();
-      setRect({
-        top: r.top - PADDING,
-        left: r.left - PADDING,
-        width: r.width + PADDING * 2,
-        height: r.height + PADDING * 2,
+      return r.width > 0 && r.height > 0;
+    };
+
+    // Last resort so a highlight tag never leaves the visitor with a chat
+    // reply and nothing to look at: act directly instead of pointing at
+    // something that can't be shown.
+    const runFallback = () => {
+      if (target === "resume") {
+        window.open(portfolio.resumeFile, "_blank", "noopener,noreferrer");
+      } else {
+        document.getElementById(target)?.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "start",
+        });
+      }
+      onDismissRef.current();
+    };
+
+    const attachToElement = (el: HTMLElement) => {
+      el.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
+
+      const updateRect = () => {
+        if (cancelled) return;
+        const r = el.getBoundingClientRect();
+        setRect({
+          top: r.top - PADDING,
+          left: r.left - PADDING,
+          width: r.width + PADDING * 2,
+          height: r.height + PADDING * 2,
+        });
+      };
+
+      updateRect();
+      // Scroll-into-view may still be animating; measure again a beat later.
+      const settleFrame = requestAnimationFrame(updateRect);
+
+      const handleTargetClick = () => onDismissRef.current();
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") onDismissRef.current();
+      };
+
+      el.addEventListener("click", handleTargetClick);
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("resize", updateRect);
+      window.addEventListener("scroll", updateRect, true);
+
+      const timeoutId = window.setTimeout(() => onDismissRef.current(), AUTO_DISMISS_MS);
+
+      cleanupFns.push(() => {
+        cancelAnimationFrame(settleFrame);
+        el.removeEventListener("click", handleTargetClick);
+        window.removeEventListener("keydown", handleKeyDown);
+        window.removeEventListener("resize", updateRect);
+        window.removeEventListener("scroll", updateRect, true);
+        window.clearTimeout(timeoutId);
       });
     };
 
-    updateRect();
-    // Scroll-into-view may still be animating; measure again a beat later.
-    const settleFrame = requestAnimationFrame(updateRect);
+    const initial = findTarget();
 
-    const handleTargetClick = () => onDismissRef.current();
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onDismissRef.current();
-    };
-
-    el.addEventListener("click", handleTargetClick);
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("resize", updateRect);
-    window.addEventListener("scroll", updateRect, true);
-
-    const timeoutId = window.setTimeout(() => onDismissRef.current(), AUTO_DISMISS_MS);
+    if (initial && isVisible(initial)) {
+      attachToElement(initial);
+    } else {
+      // The target might be tucked inside a collapsed mobile menu. If the
+      // page exposes a toggle for one, open it and give it a beat to
+      // render before giving up and falling back to a direct action.
+      const menuToggle = document.querySelector<HTMLElement>("[data-tour-menu-toggle]");
+      if (menuToggle) {
+        menuToggle.click();
+        const retryTimeout = window.setTimeout(() => {
+          if (cancelled) return;
+          const retried = findTarget();
+          if (retried && isVisible(retried)) {
+            attachToElement(retried);
+          } else {
+            runFallback();
+          }
+        }, 80);
+        cleanupFns.push(() => window.clearTimeout(retryTimeout));
+      } else {
+        runFallback();
+      }
+    }
 
     return () => {
-      cancelAnimationFrame(settleFrame);
-      el.removeEventListener("click", handleTargetClick);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("resize", updateRect);
-      window.removeEventListener("scroll", updateRect, true);
-      window.clearTimeout(timeoutId);
+      cancelled = true;
+      cleanupFns.forEach((fn) => fn());
     };
   }, [target]);
 
