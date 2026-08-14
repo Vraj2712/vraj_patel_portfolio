@@ -26,6 +26,9 @@ export function ChatWidget() {
   const [showNudge, setShowNudge] = useState(false);
   const [nudgeDismissed, setNudgeDismissed] = useState(false);
   const [spotlightTarget, setSpotlightTarget] = useState<SpotlightTarget | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+  const [viewportOffsetTop, setViewportOffsetTop] = useState(0);
 
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -34,13 +37,58 @@ export function ChatWidget() {
     if (isOpen) {
       scrollAnchorRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }
-  }, [messages, isOpen, isLoading]);
+  }, [messages, isOpen, isLoading, viewportHeight]);
 
   useEffect(() => {
     if (isOpen) {
       textareaRef.current?.focus();
     }
   }, [isOpen]);
+
+  // Track the sm breakpoint so the mobile-only behaviors below (full-screen
+  // sheet sizing, scroll lock, visualViewport tracking) never touch desktop.
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639.98px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  // On mobile, keep the panel sized to the actual visible viewport (not the
+  // layout viewport) so the input row stays pinned directly above the
+  // on-screen keyboard instead of floating mid-screen.
+  useEffect(() => {
+    if (!isOpen || !isMobile) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    const updateViewport = () => {
+      setViewportHeight(vv.height);
+      setViewportOffsetTop(vv.offsetTop);
+    };
+
+    updateViewport();
+    vv.addEventListener("resize", updateViewport);
+    vv.addEventListener("scroll", updateViewport);
+
+    return () => {
+      vv.removeEventListener("resize", updateViewport);
+      vv.removeEventListener("scroll", updateViewport);
+      setViewportHeight(null);
+      setViewportOffsetTop(0);
+    };
+  }, [isOpen, isMobile]);
+
+  // Lock background scroll behind the full-screen mobile sheet.
+  useEffect(() => {
+    if (!isOpen || !isMobile) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen, isMobile]);
 
   // Show the nudge bubble once per session, a couple of seconds after load.
   useEffect(() => {
@@ -113,14 +161,25 @@ export function ChatWidget() {
         aria-modal="false"
         aria-label={`Ask me anything about ${portfolio.firstName}`}
         aria-hidden={!isOpen}
+        style={
+          isMobile
+            ? {
+                height: viewportHeight ? `${viewportHeight}px` : undefined,
+                top: viewportOffsetTop,
+              }
+            : undefined
+        }
         className={cn(
-          "fixed bottom-24 right-4 z-50 flex h-[70vh] max-h-[560px] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-border bg-background text-foreground shadow-2xl origin-bottom-right transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none sm:right-6 sm:w-[380px]",
+          "fixed z-50 flex flex-col overflow-hidden bg-background text-foreground shadow-2xl origin-bottom-right transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none",
+          isMobile
+            ? "inset-0 h-dvh-fallback border-0"
+            : "inset-auto right-6 bottom-24 h-[70vh] max-h-[560px] w-[380px] rounded-2xl border border-border",
           isOpen
             ? "pointer-events-auto scale-100 opacity-100"
             : "pointer-events-none scale-95 opacity-0"
         )}
       >
-        <header className="flex items-center justify-between border-b border-border bg-muted px-4 py-3">
+        <header className="flex shrink-0 items-center justify-between border-b border-border bg-muted px-4 py-3">
           <h2 className="text-sm font-medium text-foreground">Ask me anything</h2>
           <Button
             type="button"
@@ -134,7 +193,7 @@ export function ChatWidget() {
           </Button>
         </header>
 
-        <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+        <div className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-4">
           {messages.map((message, i) => (
             <div
               key={i}
@@ -174,7 +233,7 @@ export function ChatWidget() {
           <div ref={scrollAnchorRef} />
         </div>
 
-        <div className="flex items-end gap-2 border-t border-border p-3">
+        <div className="flex shrink-0 items-end gap-2 border-t border-border p-3">
           <textarea
             ref={textareaRef}
             value={input}
@@ -226,7 +285,10 @@ export function ChatWidget() {
           setIsOpen((open) => !open);
           dismissNudge();
         }}
-        className="fixed bottom-4 right-4 z-50 size-14 rounded-full shadow-2xl transition-transform duration-200 ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 [&_svg]:size-6"
+        className={cn(
+          "fixed bottom-4 right-4 z-50 size-14 rounded-full shadow-2xl transition-transform duration-200 ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 [&_svg]:size-6",
+          isOpen && "max-sm:hidden"
+        )}
       >
         {isOpen ? <X /> : <MessageCircle />}
       </Button>

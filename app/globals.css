@@ -191,6 +191,15 @@
   .data-flow-dot {
     animation: data-flow 6s linear infinite;
   }
+
+  /* Dynamic viewport height with a static fallback for browsers that
+     don't understand `dvh` -- they simply ignore the second declaration
+     and keep the first. Used by the mobile chat sheet so it tracks
+     mobile browser chrome instead of the old, too-tall 100vh. */
+  .h-dvh-fallback {
+    height: 100vh;
+    height: 100dvh;
+  }
 }
 
 @keyframes data-flow {
