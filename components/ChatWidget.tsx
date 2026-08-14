@@ -17,6 +17,10 @@ const GREETING: ChatMessage = {
   content: `Hi! Ask me anything about ${portfolio.firstName} — my work, skills, or projects.`,
 };
 
+function prefersReducedMotion(): boolean {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
@@ -35,9 +39,12 @@ export function ChatWidget() {
 
   useEffect(() => {
     if (isOpen) {
-      scrollAnchorRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      scrollAnchorRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+        block: "end",
+      });
     }
-  }, [messages, isOpen, isLoading, viewportHeight]);
+  }, [messages, isOpen, isLoading]);
 
   useEffect(() => {
     if (isOpen) {
@@ -57,24 +64,58 @@ export function ChatWidget() {
 
   // On mobile, keep the panel sized to the actual visible viewport (not the
   // layout viewport) so the input row stays pinned directly above the
-  // on-screen keyboard instead of floating mid-screen.
+  // on-screen keyboard instead of a gap of page showing through beneath it.
+  // 100dvh alone doesn't react to the keyboard on iOS Safari, hence the
+  // active visualViewport tracking here.
   useEffect(() => {
     if (!isOpen || !isMobile) return;
     const vv = window.visualViewport;
+    const textarea = textareaRef.current;
     if (!vv) return;
+
+    let rafId: number | null = null;
 
     const updateViewport = () => {
       setViewportHeight(vv.height);
       setViewportOffsetTop(vv.offsetTop);
     };
 
+    // The keyboard opens/closes with an animation, so a single measurement
+    // taken right on the triggering event is stale. Keep re-measuring for a
+    // short window afterwards, then settle-scroll the latest message into
+    // view once the animation has had time to finish.
+    const trackFor = (durationMs: number) => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      const start = performance.now();
+      const tick = (now: number) => {
+        updateViewport();
+        if (now - start < durationMs) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          rafId = null;
+          scrollAnchorRef.current?.scrollIntoView({
+            behavior: prefersReducedMotion() ? "auto" : "smooth",
+            block: "end",
+          });
+        }
+      };
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const handleViewportChange = () => trackFor(350);
+
     updateViewport();
-    vv.addEventListener("resize", updateViewport);
-    vv.addEventListener("scroll", updateViewport);
+    vv.addEventListener("resize", handleViewportChange);
+    vv.addEventListener("scroll", handleViewportChange);
+    textarea?.addEventListener("focus", handleViewportChange);
+    textarea?.addEventListener("blur", handleViewportChange);
 
     return () => {
-      vv.removeEventListener("resize", updateViewport);
-      vv.removeEventListener("scroll", updateViewport);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      vv.removeEventListener("resize", handleViewportChange);
+      vv.removeEventListener("scroll", handleViewportChange);
+      textarea?.removeEventListener("focus", handleViewportChange);
+      textarea?.removeEventListener("blur", handleViewportChange);
       setViewportHeight(null);
       setViewportOffsetTop(0);
     };
@@ -169,15 +210,19 @@ export function ChatWidget() {
         style={
           isMobile
             ? {
+                // top + height fully define the box; bottom is explicitly
+                // cleared so it can never fight with them for the
+                // (fixed-position) box's computed size on iOS Safari.
                 height: viewportHeight ? `${viewportHeight}px` : undefined,
                 top: viewportOffsetTop,
+                bottom: "auto",
               }
             : undefined
         }
         className={cn(
           "fixed z-50 flex flex-col overflow-hidden bg-background text-foreground shadow-2xl origin-bottom-right transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none",
           isMobile
-            ? "inset-0 h-dvh-fallback border-0"
+            ? "inset-x-0 top-0 h-dvh-fallback border-0"
             : "inset-auto right-6 bottom-24 h-[70vh] max-h-[560px] w-[380px] rounded-2xl border border-border",
           isOpen
             ? "pointer-events-auto scale-100 opacity-100"
