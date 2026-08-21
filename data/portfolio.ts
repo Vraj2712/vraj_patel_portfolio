@@ -190,6 +190,21 @@ export const portfolio = {
   // ---- Projects ----------------------------------------------------------
   projects: [
     {
+      title: "GraphRAG — Multi-Cancer Prediction Research",
+      description: [
+        "Knowledge-graph question-answering system over sixteen peer-reviewed cancer-prediction research papers: built a GraphRAG pipeline that combines vector search with Neo4j graph traversal, so answers are grounded in explicit graph facts rather than opaque text similarity.",
+        "Designed the ingestion pipeline with LangChain's LLMGraphTransformer (Claude Haiku) to extract entities and relationships from paper chunks into a Neo4j knowledge graph, linking each entity back to its source chunk for traceability.",
+        "Combined Gemini embeddings with a Neo4j vector index for chunk retrieval, then traversed one hop out from retrieved chunks' entities to pull in connected relationships, letting Claude answer multi-hop questions plain RAG can't (e.g. connecting a dataset to a model never mentioned in the same sentence).",
+        "Shipped a full-stack app end to end: FastAPI backend, React/TypeScript/Tailwind frontend with explainable Entity → RELATIONSHIP → Entity fact display, deployed across Vercel, Render, and Neo4j Aura with environment-driven CORS and build-time API wiring.",
+        "Solved a real production constraint by switching from a local HuggingFace embedding model to the Gemini embeddings API after memory limits crashed the deploy target, building a `--reembed` mode to re-embed the full corpus at a new vector dimension without re-running costly LLM extraction.",
+      ],
+      tags: ["Python", "TypeScript", "React", "FastAPI", "Neo4j", "LangChain", "Claude", "Gemini", "Vercel", "Render"],
+      links: [
+        { label: "GitHub", url: "https://github.com/Vraj2712/graphrag-neo4j" },
+        { label: "Live Demo", url: "https://graphrag-neo4j.vercel.app" },
+      ],
+    },
+    {
       title: "Lung Cancer Risk Prediction",
       description: [
         "Data efficiency and stability analysis: designed a super-stacking ensemble of six base learners (Logistic Regression, Random Forest, Gradient Boosting, XGBoost, LightGBM, CatBoost) with a logistic-regression meta-learner to predict lung cancer risk from 15 clinically interpretable variables in the PLCO trial.",
